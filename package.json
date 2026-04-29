@@ -1,0 +1,35 @@
+{
+  "name": "ai-context-bridge",
+  "version": "1.0.0",
+  "description": "Transfer chat context between AI platforms seamlessly",
+  "private": true,
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build && node scripts/copy-manifest.mjs",
+    "build:icons": "node scripts/generate-icons.mjs",
+    "setup": "npm install && npm run build:icons && npm run build",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src --ext .ts --max-warnings 0",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@types/chrome": "^0.0.268",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "@vitest/coverage-v8": "^1.5.3",
+    "@vitest/ui": "^1.5.3",
+    "eslint": "^8.57.0",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vite-plugin-web-extension": "^4.1.2",
+    "vitest": "^1.5.3"
+  },
+  "dependencies": {
+    "lz-string": "^1.5.0"
+  }
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Context Bridge</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <div class="header-left">
+          <!-- Phosphor Icons "bridge" MIT License https://github.com/phosphor-icons/core -->
+          <svg class="logo-mark" width="26" height="26" viewBox="0 0 256 256" fill="#6366f1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M232,160H200V101.34a71.89,71.89,0,0,0,29,21.42,8,8,0,0,0,6-14.83A55.78,55.78,0,0,1,200,56a8,8,0,0,0-16,0A56,56,0,0,1,72,56a8,8,0,0,0-16,0,55.78,55.78,0,0,1-35,51.93,8,8,0,0,0,6,14.83,71.89,71.89,0,0,0,29-21.42V160H24a8,8,0,0,0,0,16H56v24a8,8,0,0,0,16,0V176H184v24a8,8,0,0,0,16,0V176h32a8,8,0,0,0,0-16Zm-88-33.8V160H112V126.2a72,72,0,0,0,32,0Zm-72-25a72.47,72.47,0,0,0,24,19.27V160H72ZM160,160V120.48a72.47,72.47,0,0,0,24-19.27V160Z"/>
+          </svg>
+          <div>
+            <div class="app-name">Context Bridge <span class="app-version">v1</span></div>
+            <div class="app-sub" id="platform-status">Detecting…</div>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" id="btn-save-current" disabled title="Save current AI conversation (Ctrl+Shift+S)" aria-label="Save current conversation">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 3v10M7 10l3 3 3-3M3 16v1h14v-1"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="btn-options" title="Settings" aria-label="Open settings">
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="10" cy="10" r="2.5"/>
+              <path d="M10 1.5v2M10 16.5v2M1.5 10h2M16.5 10h2M3.64 3.64l1.42 1.42M14.94 14.94l1.42 1.42M3.64 16.36l1.42-1.42M14.94 5.06l1.42-1.42"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="search-bar">
+        <svg class="search-icon" width="14" height="14" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+          <circle cx="9" cy="9" r="6"/><path d="M13.5 13.5L18 18"/>
+        </svg>
+        <input
+          type="search"
+          id="search-input"
+          placeholder="Search saved contexts…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+
+      <div class="storage-bar-wrap" id="storage-bar-wrap">
+        <div class="storage-label">
+          <span id="storage-label-text">Storage</span>
+          <span id="storage-pct">—</span>
+        </div>
+        <div class="storage-bar">
+          <div class="storage-fill" id="storage-fill"></div>
+        </div>
+      </div>
+
+      <div class="context-list" id="context-list">
+        <div class="spinner-wrap" id="loading">
+          <div class="spinner"></div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <span class="footer-count" id="footer-count">— contexts</span>
+        <div class="footer-actions">
+          <button class="text-btn" id="btn-import">Import</button>
+          <button class="text-btn" id="btn-export-all">Export All</button>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="./popup.ts"></script>
+  </body>
+</html>

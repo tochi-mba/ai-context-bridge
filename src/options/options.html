@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Context Bridge — Settings</title>
+    <link rel="stylesheet" href="./options.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <div class="header-inner">
+          <div class="logo-row">
+            <!-- Phosphor Icons "bridge" MIT License https://github.com/phosphor-icons/core -->
+            <svg class="logo" width="30" height="30" viewBox="0 0 256 256" fill="#6366f1" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M232,160H200V101.34a71.89,71.89,0,0,0,29,21.42,8,8,0,0,0,6-14.83A55.78,55.78,0,0,1,200,56a8,8,0,0,0-16,0A56,56,0,0,1,72,56a8,8,0,0,0-16,0,55.78,55.78,0,0,1-35,51.93,8,8,0,0,0,6,14.83,71.89,71.89,0,0,0,29-21.42V160H24a8,8,0,0,0,0,16H56v24a8,8,0,0,0,16,0V176H184v24a8,8,0,0,0,16,0V176h32a8,8,0,0,0,0-16Zm-88-33.8V160H112V126.2a72,72,0,0,0,32,0Zm-72-25a72.47,72.47,0,0,0,24,19.27V160H72ZM160,160V120.48a72.47,72.47,0,0,0,24-19.27V160Z"/>
+            </svg>
+            <div>
+              <h1 class="app-name">Context Bridge</h1>
+              <p class="app-ver">v1 &middot; by Rex Mba</p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="btn-secondary" id="btn-delete-all">Delete All Contexts</button>
+            <button class="btn-primary" id="btn-save">Save Settings</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="content">
+        <div id="save-banner" class="save-banner hidden">Settings saved</div>
+        <div id="error-banner" class="error-banner hidden"></div>
+
+        <!-- General -->
+        <section class="section">
+          <h2 class="section-title">General</h2>
+
+          <div class="field">
+            <label class="toggle-row">
+              <span class="label-text">
+                Show floating button on AI pages
+                <span class="hint">Save and inject buttons appear on supported chat pages</span>
+              </span>
+              <div class="toggle-wrap">
+                <input type="checkbox" id="showFloatingButton" class="toggle-input" />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              </div>
+            </label>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="floatingButtonPosition">Button position</label>
+            <select class="select" id="floatingButtonPosition">
+              <option value="bottom-right">Bottom Right</option>
+              <option value="bottom-left">Bottom Left</option>
+              <option value="top-right">Top Right</option>
+              <option value="top-left">Top Left</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="maxContexts">Max saved contexts</label>
+            <input type="number" class="input" id="maxContexts" min="1" max="200" step="1" />
+            <p class="field-hint">Older contexts are automatically removed when limit is reached.</p>
+          </div>
+
+          <div class="field">
+            <label class="toggle-row">
+              <span class="label-text">
+                Enable compression
+                <span class="hint">Compresses long conversations to reduce storage usage (recommended)</span>
+              </span>
+              <div class="toggle-wrap">
+                <input type="checkbox" id="compressionEnabled" class="toggle-input" />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              </div>
+            </label>
+          </div>
+
+          <div class="field">
+            <label class="toggle-row">
+              <span class="label-text">
+                Show notifications
+                <span class="hint">Toast messages when contexts are saved or injected</span>
+              </span>
+              <div class="toggle-wrap">
+                <input type="checkbox" id="notificationsEnabled" class="toggle-input" />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <!-- Injection -->
+        <section class="section">
+          <h2 class="section-title">Context Injection</h2>
+
+          <div class="field">
+            <label class="field-label" for="injectionFormat">Default injection format</label>
+            <select class="select" id="injectionFormat">
+              <option value="verbose">Verbose — includes header, metadata, and clear section markers</option>
+              <option value="compact">Compact — minimal format, shorter injected text</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="injectionCharWarnThreshold">Injection size warning threshold (chars)</label>
+            <input type="number" class="input" id="injectionCharWarnThreshold" min="1000" max="50000" step="500" />
+            <p class="field-hint">A warning is shown when the injected context exceeds this length. Note: the hard limit is 2× this value.</p>
+          </div>
+        </section>
+
+        <!-- Platforms -->
+        <section class="section">
+          <h2 class="section-title">Enabled Platforms</h2>
+          <p class="section-desc">Toggle which platforms the extension will activate on.</p>
+
+          <div class="platform-grid" id="platform-grid">
+            <!-- Rendered by JS -->
+          </div>
+        </section>
+
+        <!-- Keyboard shortcuts -->
+        <section class="section">
+          <h2 class="section-title">Keyboard Shortcuts</h2>
+          <p class="section-desc">Set in <a href="chrome://extensions/shortcuts" class="link" id="shortcuts-link">chrome://extensions/shortcuts</a></p>
+          <div class="shortcut-list">
+            <div class="shortcut-row">
+              <span class="shortcut-label">Save current context</span>
+              <kbd class="kbd">Ctrl+Shift+S</kbd>
+            </div>
+            <div class="shortcut-row">
+              <span class="shortcut-label">Open context picker</span>
+              <kbd class="kbd">Ctrl+Shift+V</kbd>
+            </div>
+          </div>
+        </section>
+
+        <!-- Data management -->
+        <section class="section">
+          <h2 class="section-title">Data Management</h2>
+          <div class="btn-row">
+            <button class="btn-secondary" id="btn-export-all">Export All Contexts</button>
+            <button class="btn-secondary" id="btn-import">Import Contexts</button>
+          </div>
+          <div class="storage-summary" id="storage-summary">
+            Loading storage info…
+          </div>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="./options.ts"></script>
+  </body>
+</html>
