@@ -1,0 +1,17 @@
+{
+  "$schema": "https://tochi-mba.github.io/schema/project.schema.json",
+  "slug": "ai-context-bridge",
+  "name": "AI Context Bridge",
+  "tagline": "Carry a conversation from ChatGPT to Claude to Gemini and back, in seconds.",
+  "description": "A Chrome extension that saves chat history from any of five AI platforms and injects it into another. Shadow DOM isolation keeps the injected UI clear of host styles; LZ-string compression keeps long conversations under a 5 MB cap; the save button disables while the AI is still generating; and every platform has ordered selector fallbacks against DOM changes.",
+  "highlights": [
+    "ChatGPT, Claude, Gemini, Perplexity and Grok: extract and inject",
+    "Native value setter and synthetic events for React and Vue inputs",
+    "Keyboard shortcuts, JSON import and export, UUID de-duplication"
+  ],
+  "stack": ["TypeScript", "Vite", "Chrome Manifest V3", "Vitest"],
+  "category": "tool",
+  "status": "stable",
+  "order": 200,
+  "display": true
+}
